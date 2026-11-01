@@ -1,6 +1,7 @@
 from pathlib import Path
 
 from app.knowledge.ingestion import extract_pdf_pages, chunk_pages
+from app.knowledge.embeddings import EmbeddingModel
 
 def main():
     project_root = Path(__file__).resolve().parent
@@ -18,15 +19,20 @@ def main():
 
     print(f"\nTotal de chunks: {len(chunks)}")
 
-    for chunk in chunks:
-        print(
-            f"\nID: {chunk['id']} | "
-            f"Página: {chunk['page']} | "
-            f"Caracteres: {len(chunk['content'])}"
-        )
-        print(chunk["content"][:200])
-        print("-" * 60)
+    embedding_model = EmbeddingModel()
 
+    texts = [
+        "Quais são as formas de pagamento da loja?",
+        "A loja oferece desconto para pagamentos via PIX?",
+        "Qual é o horário de funcionamento?"
+    ]
+
+    embeddings = embedding_model.encode(texts)
+
+    for text, vector in zip(texts, embeddings):
+        print(f"\nTexto: {text}")
+        print(f"Dimensões: {len(vector)}")
+        print(f"Primeiros valores: {vector[:5]}")
 
 if __name__ == "__main__":
     main()
