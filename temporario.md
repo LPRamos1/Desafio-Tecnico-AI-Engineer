@@ -30,6 +30,16 @@ Implementação inicial do agente de atendimento da Empório da Música.
 - Dimensão dos embeddings: 384.
 - Teste de geração com três textos executado com sucesso.
 
+### Persistência vetorial
+
+- ChromaDB integrado por meio de `PersistentClient`.
+- Coleção `store_policies` criada.
+- Métrica de distância configurada.
+- Embeddings, documentos e metadados armazenados.
+- Teste inicial: 13 chunks e 13 registros persistidos.
+- Inserção realizada com `upsert`, utilizando IDs dos chunks.
+- Persistência entre execuções confirmada.
+
 ### Dependências adicionadas
 
 - `PyMuPDF`
@@ -53,4 +63,3 @@ Implementação inicial do agente de atendimento da Empório da Música.
 - O manual contém possíveis ambiguidades, especialmente nas regras de parcelamento. Não assumir interpretações sem fundamento documental.
 - Evitar carregar novamente o modelo de embeddings a cada pergunta.
 - Não considerar a recuperação semântica garantia de resposta correta: avaliar a relevância dos trechos e o comportamento do agente quando não houver informação suficiente.
-

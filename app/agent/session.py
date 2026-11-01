@@ -5,7 +5,7 @@ from app.config.settings import MAX_MSG_PER_HISTORY
 
 
 class Session:
-    """Represent an individual costumer conversation."""
+    """Represent an individual custumer conversation."""
 
 
     def __init__(self, customer_name: str | None = None):
@@ -103,3 +103,4 @@ class SessionManager:
             bool: True if the session was deleted, otherwise False.
         """
         return self.sessions.pop(session_id, None) is not None
+    

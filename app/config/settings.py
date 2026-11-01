@@ -12,3 +12,9 @@ LLM_MODEL = "gemini-3.8-flash"
 CHAR_LIMIT_PER_MSG = 2000
 MAX_MSG_PER_HISTORY = 20
 
+# Embedding model configuration
+EMBEDDING_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+
+# Vector database configuration
+VECTORSTORE_DIR = "vectorstore"
+COLLECTION_NAME = "store_policies"
