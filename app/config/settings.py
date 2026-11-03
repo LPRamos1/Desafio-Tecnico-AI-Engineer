@@ -8,8 +8,8 @@ load_dotenv()
 
 # Gemini API configs
 API_KEY = os.getenv("GEMINI_API_KEY")
-LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
-LLM_FALLBACK_MODEL = os.getenv("GEMINI_FALLBACK_MODEL", "gemini-3.5-flash-lite")  # optional, used if primary fails/times out
+LLM_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite")
+LLM_FALLBACK_MODEL = os.getenv("GEMINI_FALLBACK_MODEL", "gemini-3.8-flash")  # optional, used if primary fails/times out
 LLM_TIMEOUT_MS = 60_000  # per HTTP request; avoids minutes-long hangs on congested models
 
 # Defensive measures

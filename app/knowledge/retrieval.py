@@ -48,7 +48,26 @@ class Retriever:
                 "id": chunk_id,
                 "content": document,
                 "page": metadata["page"],
+                "section": metadata["section"],
                 "distance": distance
             })
 
         return retrieved_chunks
+
+
+    def format_context(self, chunks: list[dict]):
+        """Format retrieved chunks into context string"""
+        
+        if not chunks:
+            return "Nenhum conteudo relevante foi encontrado."
+
+        context_parts = []
+
+        for chunk in chunks:
+            context_parts.append(
+                f"[Seção {chunk['section']} | Página {chunk['page']}]\n"
+                f"{chunk['content']}"
+            )
+
+        return "\n\n".join(context_parts)
+    

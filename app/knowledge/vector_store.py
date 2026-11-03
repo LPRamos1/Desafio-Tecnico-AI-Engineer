@@ -32,6 +32,7 @@ class ChromaVectorStore:
 
         if len(chunks) != len(embeddings):
             raise ValueError("The number of chunks must match the number of embeddings.")
+        
         if not chunks:
             return
 
@@ -39,7 +40,7 @@ class ChromaVectorStore:
             ids=[chunk["id"] for chunk in chunks],
             embeddings=embeddings, # type: ignore
             documents=[chunk["content"] for chunk in chunks],
-            metadatas=[{"page": chunk["page"]} for chunk in chunks]
+            metadatas=[{"page": chunk["page"], "section": chunk["section"]} for chunk in chunks]
         )
 
 
@@ -61,8 +62,22 @@ class ChromaVectorStore:
         Returns:
             dict: Retrieved documents, metada and distance
         """
+
+        if top_k <= 0:
+            raise ValueError("top_k must be greater than zero.")
+        
         return self.collection.query(
             query_embeddings=[query_embedding],
             n_results=min(top_k, self.collection.count()),
             include=["documents", "metadatas", "distances"]
+        )
+
+
+    def reset(self):
+        """Delete and recreate the collection."""
+        self.client.delete_collection(name=COLLECTION_NAME)
+
+        self.collection = self.client.get_or_create_collection(
+            name=COLLECTION_NAME,
+            metadata={"hnsw:space": "cosine"}
         )
