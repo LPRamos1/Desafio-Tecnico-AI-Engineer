@@ -1,5 +1,5 @@
 # Empório da Música — Customer Service Agent
-
+<https://www.youtube.com/watch?v=RL7mXUSdNdk> Demo
 A text-based customer service agent prototype for **Empório da Música**, a fictional musical instrument store in Campo Grande, Brazil. Built for the a AI Engineer technical challenge.
 
 On every message the agent decides whether to **query data** (catalog, stock, promotions, orders), **query the store policies** (PDF manual) or just chat. Out-of-scope questions are politely declined.
